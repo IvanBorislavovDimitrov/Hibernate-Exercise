@@ -1,0 +1,34 @@
+package app.controller;
+
+import app.dto.UserDto;
+import app.service.api.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping
+    public ResponseEntity<UserDto> add(@RequestBody @Valid UserDto userDto) {
+        userService.save(userDto);
+        return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserDto>> findAll() {
+        List<UserDto> users = userService.findAll();
+        return ResponseEntity.ok(users);
+    }
+}

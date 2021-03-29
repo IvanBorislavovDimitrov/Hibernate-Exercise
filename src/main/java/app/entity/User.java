@@ -1,0 +1,41 @@
+package app.entity;
+
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
+
+@Entity
+@Table(name = "users")
+public class User extends IdEntity {
+
+    @Column(nullable = false, unique = true)
+    private String username;
+    @Column(nullable = false, unique = true)
+    private String email;
+    @ManyToMany(mappedBy = "buyers", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    private List<Product> boughtProducts = Collections.emptyList();
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Product> getBoughtProducts() {
+        return boughtProducts;
+    }
+
+    public void setBoughtProducts(List<Product> boughtProducts) {
+        this.boughtProducts = boughtProducts;
+    }
+}
