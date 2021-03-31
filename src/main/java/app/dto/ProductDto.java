@@ -18,6 +18,8 @@ public class ProductDto extends IdDto {
     @NotNull
     private int returnPeriod;
     private List<UserDto> buyers = Collections.emptyList();
+    @NotNull
+    private BrandDto brand;
 
     public String getName() {
         return name;
@@ -65,5 +67,13 @@ public class ProductDto extends IdDto {
 
     public void setBuyers(List<UserDto> buyers) {
         this.buyers = buyers;
+    }
+
+    public BrandDto getBrand() {
+        return brand;
+    }
+
+    public void setBrand(BrandDto brand) {
+        this.brand = brand;
     }
 }

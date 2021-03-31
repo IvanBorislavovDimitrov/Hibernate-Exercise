@@ -11,6 +11,7 @@
         <class>app.entity.Category</class>
         <class>app.entity.Review</class>
         <class>app.entity.Role</class>
+        <class>app.entity.Brand</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>

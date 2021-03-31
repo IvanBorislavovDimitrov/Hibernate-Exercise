@@ -36,6 +36,9 @@ public class Product extends IdEntity {
     private Category category;
     @OneToMany(mappedBy = "product", targetEntity = Review.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Review> reviews = Collections.emptyList();
+    @ManyToOne
+    @JoinColumn(name = "brand_id", referencedColumnName = "id")
+    private Brand brand;
 
     public String getName() {
         return name;
@@ -99,5 +102,13 @@ public class Product extends IdEntity {
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 }
