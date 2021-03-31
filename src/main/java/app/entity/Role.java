@@ -1,7 +1,10 @@
 package app.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,10 +13,11 @@ public class Role extends IdEntity {
 
     @Column(nullable = false)
     private RoleType roleType;
-    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    private List<User> users = Collections.emptyList();
+    private List<User> users = new ArrayList<>();
 
     public RoleType getRoleType() {
         return roleType;

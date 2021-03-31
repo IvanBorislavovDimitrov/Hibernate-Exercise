@@ -1,14 +1,14 @@
 package app.dto;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryDto extends IdDto {
 
     @NotNull
     private String name;
-    private List<ProductDto> products = Collections.emptyList();
+    private List<ProductDto> products = new ArrayList<>();
 
     public String getName() {
         return name;

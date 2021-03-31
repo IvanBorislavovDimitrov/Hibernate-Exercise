@@ -1,7 +1,7 @@
 package app.entity;
 
 import javax.persistence.*;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +12,7 @@ public class Category extends IdEntity {
     private String name;
 
     @OneToMany(mappedBy = "category", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private List<Product> products = Collections.emptyList();
+    private List<Product> products = new ArrayList<>();
 
     public String getName() {
         return name;

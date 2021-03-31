@@ -15,4 +15,6 @@ public interface Repository<E extends IdEntity> {
     void delete(E object);
 
     List<E> findAll();
+
+    void merge(E object);
 }

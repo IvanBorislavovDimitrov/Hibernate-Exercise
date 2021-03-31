@@ -3,6 +3,7 @@ package app.dto;
 import app.entity.Product;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class BrandDto extends IdDto {
     private String name;
     @NotNull
     private String description;
-    private List<Product> products = Collections.emptyList();
+    private List<Product> products = new ArrayList<>();
 
     public String getName() {
         return name;

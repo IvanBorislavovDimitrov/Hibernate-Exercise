@@ -1,7 +1,7 @@
 package app.dto;
 
 import javax.validation.constraints.NotNull;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDto extends IdDto {
@@ -10,7 +10,8 @@ public class UserDto extends IdDto {
     private String username;
     @NotNull
     private String email;
-    private List<ProductDto> boughtProducts = Collections.emptyList();
+    private List<ProductDto> boughtProducts = new ArrayList<>();
+    private List<RoleDto> roles = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -34,5 +35,13 @@ public class UserDto extends IdDto {
 
     public void setBoughtProducts(List<ProductDto> boughtProducts) {
         this.boughtProducts = boughtProducts;
+    }
+
+    public List<RoleDto> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDto> roles) {
+        this.roles = roles;
     }
 }

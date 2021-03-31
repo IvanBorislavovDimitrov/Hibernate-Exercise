@@ -58,6 +58,14 @@ public abstract class AbstractRepository<E extends IdEntity> implements Reposito
         });
     }
 
+    @Override
+    public void merge(E object) {
+        executeInTransaction(entityManager -> {
+            entityManager.merge(object);
+            return null;
+        });
+    }
+
     protected <T> T executeInTransaction(Function<EntityManager, T> function) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
