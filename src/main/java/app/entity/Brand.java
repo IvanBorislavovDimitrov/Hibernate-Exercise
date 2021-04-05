@@ -11,7 +11,7 @@ public class Brand extends IdEntity {
     private String name;
     @Column(nullable = false)
     private String description;
-    @OneToMany(mappedBy = "brand", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "brand", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> products;
 
     public String getName() {

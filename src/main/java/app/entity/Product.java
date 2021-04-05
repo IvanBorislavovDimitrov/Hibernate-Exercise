@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -40,6 +39,9 @@ public class Product extends IdEntity {
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand brand;
+    @ManyToOne
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "id")
+    private Manufacturer manufacturer;
 
     public String getName() {
         return name;
@@ -111,5 +113,13 @@ public class Product extends IdEntity {
 
     public void setBrand(Brand brand) {
         this.brand = brand;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 }

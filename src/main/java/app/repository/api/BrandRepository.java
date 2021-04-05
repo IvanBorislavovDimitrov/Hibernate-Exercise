@@ -4,4 +4,5 @@ import app.entity.Brand;
 
 public interface BrandRepository extends Repository<Brand> {
 
+    Brand findByName(String name);
 }

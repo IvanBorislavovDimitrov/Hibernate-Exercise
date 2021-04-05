@@ -3,7 +3,6 @@ package app.dto;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductDto extends IdDto {
@@ -21,6 +20,10 @@ public class ProductDto extends IdDto {
     private List<UserDto> buyers = new ArrayList<>();
     @NotNull
     private BrandDto brand;
+    @NotNull
+    private CategoryDto category;
+    @NotNull
+    private ManufacturerDto manufacturer;
 
     public String getName() {
         return name;
@@ -76,5 +79,21 @@ public class ProductDto extends IdDto {
 
     public void setBrand(BrandDto brand) {
         this.brand = brand;
+    }
+
+    public ManufacturerDto getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(ManufacturerDto manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public CategoryDto getCategory() {
+        return category;
+    }
+
+    public void setCategory(CategoryDto category) {
+        this.category = category;
     }
 }

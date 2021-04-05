@@ -11,7 +11,7 @@ public class Category extends IdEntity {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "category", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
     public String getName() {
