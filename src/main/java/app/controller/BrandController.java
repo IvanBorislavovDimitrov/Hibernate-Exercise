@@ -22,9 +22,9 @@ public class BrandController {
     }
 
     @PostMapping
-    public ResponseEntity<BrandDto> add(@RequestBody @Valid BrandDto brand) {
-        brandService.save(brand);
-        return ResponseEntity.ok(brand);
+    public ResponseEntity<BrandDto> add(@RequestBody @Valid BrandDto brandDto) {
+        brandService.save(brandDto);
+        return ResponseEntity.ok(brandDto);
     }
 
     @GetMapping
@@ -32,4 +32,17 @@ public class BrandController {
         List<BrandDto> brands = brandService.findAll();
         return ResponseEntity.ok(brands);
     }
+
+    @PutMapping
+    public ResponseEntity<BrandDto> update(@RequestBody @Valid BrandDto brandDto) {
+        brandService.update(brandDto);
+        return ResponseEntity.ok(brandDto);
+    }
+
+    @DeleteMapping(value = "/{brandId}")
+    public ResponseEntity<BrandDto> delete(@PathVariable String brandId) {
+        brandService.delete(brandId);
+        return ResponseEntity.ok().build();
+    }
+
 }

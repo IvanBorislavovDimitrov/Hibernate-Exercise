@@ -33,7 +33,7 @@ public abstract class AbstractRepository<E extends IdEntity> implements Reposito
     @Override
     public void update(E object) {
         executeInTransaction(entityManager -> {
-            entityManager.persist(object);
+            entityManager.merge(object);
             return null;
         });
     }
