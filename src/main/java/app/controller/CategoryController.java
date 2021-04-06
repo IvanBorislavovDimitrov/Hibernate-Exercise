@@ -32,4 +32,17 @@ public class CategoryController {
         List<CategoryDto> categories = categoryService.findAll();
         return ResponseEntity.ok(categories);
     }
+
+    @PutMapping
+    public ResponseEntity<CategoryDto> update(@RequestBody @Valid CategoryDto categoryDto) {
+        categoryService.update(categoryDto);
+        return ResponseEntity.ok(categoryDto);
+    }
+
+    @DeleteMapping(value = "/{categoryId}")
+    public ResponseEntity<CategoryDto> delete(@PathVariable String categoryId) {
+        categoryService.delete(categoryId);
+        return ResponseEntity.ok().build();
+    }
+
 }
