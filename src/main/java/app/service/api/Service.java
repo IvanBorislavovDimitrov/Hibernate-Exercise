@@ -10,9 +10,9 @@ public interface Service<D extends IdDto> {
 
     D find(String id);
 
-    void update(D oldDto, D newDto);
+    void update(D dto);
 
-    void delete(D dto);
+    void delete(String id);
 
     List<D> findAll();
 }

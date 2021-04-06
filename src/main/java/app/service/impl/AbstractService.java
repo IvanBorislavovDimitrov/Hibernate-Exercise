@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractService<E extends IdEntity, D extends IdDto> implements Service<D> {
 
-    private final Repository<E> repository;
     protected final ModelMapper modelMapper;
+    private final Repository<E> repository;
 
     protected AbstractService(Repository<E> repository, ModelMapper modelMapper) {
         this.repository = repository;
@@ -32,16 +32,14 @@ public abstract class AbstractService<E extends IdEntity, D extends IdDto> imple
     }
 
     @Override
-    public void update(D oldDto, D newDto) {
-        E oldEntity = repository.find(oldDto.getId());
-        E newEntity = modelMapper.map(newDto, getEntityClass());
-        repository.update(oldEntity, newEntity);
+    public void update(D dto) {
+        E entity = modelMapper.map(dto, getEntityClass());
+        repository.update(entity);
     }
 
     @Override
-    public void delete(D dto) {
-        E entity = repository.find(dto.getId());
-        repository.delete(entity);
+    public void delete(String id) {
+        repository.delete(id);
     }
 
     @Override

@@ -31,18 +31,18 @@ public abstract class AbstractRepository<E extends IdEntity> implements Reposito
     }
 
     @Override
-    public void update(E oldObject, E newObject) {
+    public void update(E object) {
         executeInTransaction(entityManager -> {
-            entityManager.detach(oldObject);
-            entityManager.merge(newObject);
+            entityManager.persist(object);
             return null;
         });
     }
 
     @Override
-    public void delete(E object) {
+    public void delete(String id) {
         executeInTransaction(entityManager -> {
-            entityManager.remove(object);
+            E e = entityManager.find(getEntityClass(), id);
+            entityManager.remove(e);
             return null;
         });
     }
