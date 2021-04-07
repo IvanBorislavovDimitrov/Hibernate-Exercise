@@ -25,6 +25,17 @@ public class ProductRepositoryImpl extends AbstractRepository<Product> implement
     }
 
     @Override
+    public void delete(String id) {
+        executeInTransaction(entityManager -> {
+            Product product = entityManager.find(getEntityClass(), id);
+            product.getBrand().getProducts().remove(product);
+            product.getManufacturer().getProducts().remove(product);
+            product.getCategory().getProducts().remove(product);
+            return null;
+        });
+    }
+
+    @Override
     protected Class<Product> getEntityClass() {
         return Product.class;
     }

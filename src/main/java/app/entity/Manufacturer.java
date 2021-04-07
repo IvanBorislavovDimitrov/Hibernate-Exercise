@@ -1,5 +1,7 @@
 package app.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +15,8 @@ public class Manufacturer extends IdEntity {
     private String name;
     @Column(name = "registered_at", nullable = false)
     private Date registeredAt;
-    @OneToMany(mappedBy = "manufacturer", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manufacturer", targetEntity = Product.class, fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> products = new ArrayList<>();
 
     public String getName() {

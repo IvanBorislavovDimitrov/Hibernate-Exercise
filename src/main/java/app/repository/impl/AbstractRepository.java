@@ -72,10 +72,12 @@ public abstract class AbstractRepository<E extends IdEntity> implements Reposito
         T object = null;
         try {
             object = function.apply(entityManager);
+            entityManager.flush();
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             entityManager.getTransaction().rollback();
         } finally {
+            entityManager.clear();
             entityManager.close();
         }
         return object;

@@ -1,5 +1,6 @@
 package app.controller;
 
+import app.dto.LogDto;
 import app.dto.ManufacturerDto;
 import app.service.api.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +34,15 @@ public class ManufacturerController {
         return ResponseEntity.ok(manufacturers);
     }
 
+    @PutMapping
+    public ResponseEntity<ManufacturerDto> update(@RequestBody @Valid ManufacturerDto manufacturerDto) {
+        manufacturerService.update(manufacturerDto);
+        return ResponseEntity.ok(manufacturerDto);
+    }
+
+    @DeleteMapping(value = "/{manufacturerId}")
+    public ResponseEntity<LogDto> delete(@PathVariable String manufacturerId) {
+        manufacturerService.delete(manufacturerId);
+        return ResponseEntity.ok().build();
+    }
 }

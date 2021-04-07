@@ -26,7 +26,7 @@ public class Product extends IdEntity {
     @Column(name = "return_perion", nullable = false) // TODO: Fix
     @Min(0)
     private int returnPeriod;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "products_buyers", joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
     @LazyCollection(LazyCollectionOption.FALSE)
@@ -34,7 +34,7 @@ public class Product extends IdEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-    @OneToMany(mappedBy = "product", targetEntity = Review.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "product", targetEntity = Review.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Review> reviews = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")

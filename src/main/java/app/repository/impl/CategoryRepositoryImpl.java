@@ -24,7 +24,6 @@ public class CategoryRepositoryImpl extends AbstractRepository<Category> impleme
         });
     }
 
-
     @Override
     protected Class<Category> getEntityClass() {
         return Category.class;

@@ -40,7 +40,7 @@ public class ProductServiceImpl extends AbstractService<Product, ProductDto> imp
     @Override
     public void save(ProductDto productDto) {
         Product product = modelMapper.map(productDto, Product.class);
-        Manufacturer manufacturer = manufacturerRepository.findByName(product.getManufacturer().getName());
+        Manufacturer manufacturer = manufacturerRepository.findByName(productDto.getManufacturer().getName());
         product.setManufacturer(manufacturer);
         manufacturer.getProducts().add(product);
         Category category = categoryRepository.findByName(product.getCategory().getName());

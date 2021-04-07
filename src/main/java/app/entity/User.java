@@ -18,7 +18,7 @@ public class User extends IdEntity {
     @Column(nullable = false, unique = true)
     private String email;
     @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany(mappedBy = "buyers", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "buyers", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> boughtProducts = new ArrayList<>();
     @Fetch(value = FetchMode.SUBSELECT)
     @ManyToMany(mappedBy = "users", targetEntity = Role.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
