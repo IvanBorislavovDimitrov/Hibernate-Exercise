@@ -34,6 +34,14 @@ public class UserServiceImpl extends AbstractService<User, UserDto> implements U
         userRepository.merge(user);
     }
 
+    @Override
+    public void update(UserDto dto) {
+        User user = userRepository.find(dto.getId());
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        userRepository.update(user);
+    }
+
     private Role determineUserRole() {
         if (!userRepository.findAll().isEmpty()) {
             return roleRepository.findByRoleType(Role.RoleType.ADMIN);
