@@ -34,7 +34,7 @@ public class Product extends IdEntity {
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private Category category;
-    @OneToMany(mappedBy = "product", targetEntity = Review.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", targetEntity = Review.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")

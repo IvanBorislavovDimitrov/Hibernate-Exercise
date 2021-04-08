@@ -32,4 +32,11 @@ public class UserController {
         List<UserDto> users = userService.findAll();
         return ResponseEntity.ok(users);
     }
+
+    @PutMapping
+    public ResponseEntity<UserDto> update(@RequestBody @Valid UserDto userDto) {
+        userService.update(userDto);
+        return ResponseEntity.ok(userDto);
+    }
+
 }
