@@ -47,7 +47,7 @@ public class ProductController {
 
     @PostMapping("/buy-product/{productId}/{userId}")
     public ResponseEntity<ProductDto> buyProduct(@PathVariable String productId, @PathVariable String userId) {
-            ProductDto productDto = productService.buyProduct(productId, userId);
+        ProductDto productDto = productService.buyProduct(productId, userId);
         return ResponseEntity.ok(productDto);
     }
 
