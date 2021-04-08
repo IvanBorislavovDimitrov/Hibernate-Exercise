@@ -55,6 +55,25 @@ public class ProductServiceImpl extends AbstractService<Product, ProductDto> imp
     }
 
     @Override
+    public void update(ProductDto productDto) {
+        Product product = productRepository.find(productDto.getId());
+        product.setDescription(productDto.getDescription());
+        product.setName(productDto.getName());
+        product.setProductPrice(productDto.getProductPrice());
+        product.setReturnPeriod(productDto.getReturnPeriod());
+        product.setShippingPrice(productDto.getShippingPrice());
+        Manufacturer manufacturer = manufacturerRepository.findByName(productDto.getManufacturer().getName());
+        product.setManufacturer(manufacturer);
+        manufacturer.getProducts().add(product);
+        Category category = categoryRepository.findByName(product.getCategory().getName());
+        product.setCategory(category);
+        category.getProducts().add(product);
+        Brand brand = brandRepository.findByName(productDto.getBrand().getName());
+        product.setBrand(brand);
+        productRepository.update(product);
+    }
+
+    @Override
     protected Class<Product> getEntityClass() {
         return Product.class;
     }
