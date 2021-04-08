@@ -17,8 +17,6 @@ public class User extends IdEntity {
     private String username;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(columnDefinition="tinyint(1) default 1")
-    private boolean isActive;
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(mappedBy = "buyers", targetEntity = Product.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Product> boughtProducts = new ArrayList<>();
@@ -56,13 +54,5 @@ public class User extends IdEntity {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 }

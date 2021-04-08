@@ -32,6 +32,14 @@ public class ReviewServiceImpl extends AbstractService<Review, ReviewDto> implem
     }
 
     @Override
+    public void update(ReviewDto reviewDto) {
+        Review newReview = modelMapper.map(reviewDto, getEntityClass());
+        Review oldReview = reviewRepository.find(reviewDto.getId());
+        newReview.setProduct(oldReview.getProduct());
+        reviewRepository.update(newReview);
+    }
+
+    @Override
     protected Class<Review> getEntityClass() {
         return Review.class;
     }
@@ -40,4 +48,5 @@ public class ReviewServiceImpl extends AbstractService<Review, ReviewDto> implem
     protected Class<ReviewDto> getDtoClass() {
         return ReviewDto.class;
     }
+
 }
