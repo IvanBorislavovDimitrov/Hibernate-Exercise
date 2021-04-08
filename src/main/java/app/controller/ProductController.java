@@ -45,4 +45,10 @@ public class ProductController {
         return ResponseEntity.ok(productDto);
     }
 
+    @PostMapping("/buy-product/{productId}/{userId}")
+    public ResponseEntity<ProductDto> buyProduct(@PathVariable String productId, @PathVariable String userId) {
+            ProductDto productDto = productService.buyProduct(productId, userId);
+        return ResponseEntity.ok(productDto);
+    }
+
 }

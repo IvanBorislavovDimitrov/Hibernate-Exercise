@@ -1,14 +1,8 @@
 package app.service.impl;
 
 import app.dto.ProductDto;
-import app.entity.Brand;
-import app.entity.Category;
-import app.entity.Manufacturer;
-import app.entity.Product;
-import app.repository.api.BrandRepository;
-import app.repository.api.CategoryRepository;
-import app.repository.api.ManufacturerRepository;
-import app.repository.api.ProductRepository;
+import app.entity.*;
+import app.repository.api.*;
 import app.service.api.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +15,16 @@ public class ProductServiceImpl extends AbstractService<Product, ProductDto> imp
     private final ManufacturerRepository manufacturerRepository;
     private final CategoryRepository categoryRepository;
     private final BrandRepository brandRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProductServiceImpl(ProductRepository productRepository, ModelMapper modelMapper, ManufacturerRepository manufacturerRepository, CategoryRepository categoryRepository, BrandRepository brandRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ModelMapper modelMapper, ManufacturerRepository manufacturerRepository, CategoryRepository categoryRepository, BrandRepository brandRepository, UserRepository userRepository) {
         super(productRepository, modelMapper);
         this.productRepository = productRepository;
         this.manufacturerRepository = manufacturerRepository;
         this.categoryRepository = categoryRepository;
         this.brandRepository = brandRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -71,6 +67,16 @@ public class ProductServiceImpl extends AbstractService<Product, ProductDto> imp
         Brand brand = brandRepository.findByName(productDto.getBrand().getName());
         product.setBrand(brand);
         productRepository.update(product);
+    }
+
+    @Override
+    public ProductDto buyProduct(String productId, String userId) {
+        User user = userRepository.find(userId);
+        Product product = productRepository.find(productId);
+        product.getBuyers().add(user);
+        user.getBoughtProducts().add(product);
+        userRepository.update(user);
+        return modelMapper.map(product, ProductDto.class);
     }
 
     @Override

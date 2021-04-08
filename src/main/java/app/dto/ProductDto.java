@@ -2,8 +2,6 @@ package app.dto;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProductDto extends IdDto {
 
@@ -17,7 +15,6 @@ public class ProductDto extends IdDto {
     private BigDecimal shippingPrice;
     @NotNull
     private int returnPeriod;
-    private List<UserDto> buyers = new ArrayList<>();
     @NotNull
     private BrandDto brand;
     @NotNull
@@ -63,14 +60,6 @@ public class ProductDto extends IdDto {
 
     public void setReturnPeriod(int returnPeriod) {
         this.returnPeriod = returnPeriod;
-    }
-
-    public List<UserDto> getBuyers() {
-        return buyers;
-    }
-
-    public void setBuyers(List<UserDto> buyers) {
-        this.buyers = buyers;
     }
 
     public BrandDto getBrand() {
