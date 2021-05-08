@@ -8,6 +8,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductServiceImpl extends AbstractService<Product, ProductDto> implements ProductService {
 
@@ -77,6 +80,14 @@ public class ProductServiceImpl extends AbstractService<Product, ProductDto> imp
         user.getBoughtProducts().add(product);
         userRepository.update(user);
         return modelMapper.map(product, ProductDto.class);
+    }
+
+    @Override
+    public List<ProductDto> findProductsByManufacturerName(String manufacturerName) {
+        List<Product> products = productRepository.findProductsByManufacturerName(manufacturerName);
+        return products.stream()
+                .map(product -> modelMapper.map(product, ProductDto.class))
+                .collect(Collectors.toList());
     }
 
     @Override

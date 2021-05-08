@@ -51,4 +51,10 @@ public class ProductController {
         return ResponseEntity.ok(productDto);
     }
 
+    @GetMapping("/manufacturer/{manufacturerName}")
+    public ResponseEntity<List<ProductDto>> getProductsByManufacturerName(@PathVariable String manufacturerName) {
+        return ResponseEntity.ok(productService.findProductsByManufacturerName(manufacturerName));
+    }
+
+
 }

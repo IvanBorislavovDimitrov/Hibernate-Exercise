@@ -23,7 +23,7 @@ public class Product extends IdEntity {
     @Column(name = "shipping_price", nullable = false)
     @Min(0)
     private BigDecimal shippingPrice;
-    @Column(name = "return_perion", nullable = false) // TODO: Fix
+    @Column(name = "return_perion", nullable = false)
     @Min(0)
     private int returnPeriod;
     @ManyToMany(cascade = CascadeType.ALL)
